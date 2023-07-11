@@ -1,0 +1,14 @@
+import { model } from "mongoose";
+import { userSchema } from "./schemas/userSchema";
+import { portafolioSchema } from "./schemas/portafolioSchema";
+import IUser from "../types/user";
+import { IPortafolio } from "../types/portafolio";
+import { Iproject } from "../types/project";
+import { projectSchema } from "./schemas/projectSchema";
+import { ITechnology } from "../types/technology";
+import { technologySchema } from "./schemas/technologySchema";
+
+export const User = model<IUser>("User", userSchema)
+export const Portafolio = model<IPortafolio>("Portafolio", portafolioSchema)
+export const Project = model<Iproject>("Project", projectSchema)
+export const Technology = model<ITechnology>("Technology", technologySchema)

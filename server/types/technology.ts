@@ -1,0 +1,5 @@
+export interface ITechnology {
+    name: string,
+    image: string,
+    category: string
+}
