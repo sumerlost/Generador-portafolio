@@ -23,12 +23,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RegisterUser = void 0;
+exports.LoginUser = exports.RegisterUser = void 0;
 const user_1 = require("../db/handlers/user");
 const bcrypt = __importStar(require("bcrypt"));
 const jwt = __importStar(require("jsonwebtoken"));
 const RegisterUser = async (req, res) => {
     try {
+        if (req.body.validate) {
+            return res.status(400).json({ error: "el usuario ya se encuentra registrado" });
+        }
         const { user } = req.body;
         const hashedpass = bcrypt.hashSync(user.password, 10);
         const usercreated = await (0, user_1.DBCreateUser)({ ...user, password: hashedpass });
@@ -41,3 +44,25 @@ const RegisterUser = async (req, res) => {
     }
 };
 exports.RegisterUser = RegisterUser;
+const LoginUser = async (req, res) => {
+    try {
+        const { validate } = req.body;
+        if (!validate) {
+            return res.status(400).json({ error: "usuario no registrado" });
+        }
+        else {
+            if (await bcrypt.compare(validate.user.password, validate.password)) {
+                const newToken = { _id: validate.user._id, role: validate.user.role };
+                const response = jwt.sign(newToken, "10");
+                res.status(200).send(response);
+            }
+            else {
+                res.status(400).json({ error: "contraseña incorrecta" });
+            }
+        }
+    }
+    catch (error) {
+        console.error(error.message);
+    }
+};
+exports.LoginUser = LoginUser;

@@ -22,7 +22,7 @@ const DBUserSearch = async (mail) => {
             return userSearch;
         }
         else {
-            return false;
+            return null;
         }
     }
     catch (error) {
