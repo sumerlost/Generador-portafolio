@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.userSchema = void 0;
 const mongoose_1 = require("mongoose");
 exports.userSchema = new mongoose_1.Schema({
+    _id: mongoose_1.Schema.Types.ObjectId,
     mail: {
         type: String,
         require: true,
@@ -35,5 +36,13 @@ exports.userSchema = new mongoose_1.Schema({
     github: {
         type: String,
     },
-    portafolio: { type: mongoose_1.Schema.Types.ObjectId, ref: "Portafolio" }
+    portafolio: { type: mongoose_1.Schema.Types.ObjectId, ref: "Portafolio" },
+    role: {
+        type: String,
+        enum: [
+            "user",
+            "recruiter"
+        ],
+        default: "user"
+    }
 });

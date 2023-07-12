@@ -2,6 +2,7 @@ import IUser from "../../types/user";
 import { Schema } from "mongoose";
 
 export const userSchema = new Schema<IUser>({
+    _id: Schema.Types.ObjectId,
     mail: {
         type: String,
         require: true,
@@ -34,5 +35,13 @@ export const userSchema = new Schema<IUser>({
     github: {
         type: String,
     },
-    portafolio: { type: Schema.Types.ObjectId, ref: "Portafolio" }
+    portafolio: { type: Schema.Types.ObjectId, ref: "Portafolio" },
+    role: {
+        type: String,
+        enum: [
+            "user",
+            "recruiter"
+        ],
+        default: "user"
+    }
 })

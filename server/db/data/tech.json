@@ -1,0 +1,342 @@
+{
+    "programming_languages": [
+        {
+            "name": "javascript",
+            "image": "./images/javascript-original.svg"
+        },
+        {
+            "name": "python",
+            "image": "./images/python-original.svg"
+        },
+        {
+            "name": "php",
+            "image": "./images/php-original.svg"
+        },
+        {
+            "name": "c",
+            "image": "./images/c-original.svg"
+        },
+        {
+            "name": "cplusplus",
+            "image": "./images/cplusplus-original.svg"
+        },
+        {
+            "name": "csharp",
+            "image": "./images/csharp-original.svg"
+        },
+        {
+            "name": "java",
+            "image": "./images/java-original.svg"
+        },
+        {
+            "name": "typescript",
+            "image": "./images/typescript-original.svg"
+        },
+        {
+            "name": "perl",
+            "image": "./images/logos-perl.svg"
+        },
+        {
+            "name": "ruby",
+            "image": "./images/ruby-original.svg"
+        },
+        {
+            "name": "scala",
+            "image": "./images/scala-original.svg"
+        },
+        {
+            "name": "swift",
+            "image": "./images/swift-original.svg"
+        },
+        {
+            "name": "objetivec",
+            "image": "./images/apple_objetivec-icon.svg"
+        },
+        {
+            "name": "clojure",
+            "image": "./images/Clojure_logo.svg"
+        },
+        {
+            "name": "rust",
+            "image": "./images/rust-plain.svg"
+        },
+        {
+            "name": "haskell",
+            "image": "./images/Haskell-Logo.svg"
+        },
+        {
+            "name": "coffeescript",
+            "image": "./images/coffeescript-original-wordmark.svg"
+        },
+        {
+            "name": "elixir",
+            "image": "./images/elixir-lang-icon.svg"
+        },
+        {
+            "name": "erlang",
+            "image": "./images/erlang-official.svg"
+        },
+        {
+            "name": "nim",
+            "image": "./images/nim-lang-icon.svg"
+        },
+        {
+            "name": "go",
+            "image": "./images/go-original.svg"
+        }
+    ],
+    "Frontend_Development": [
+        {
+            "name": "vuejs",
+            "image": "./images/frontend-development/vuejs-original-wordmark.svg"
+        },
+        {
+            "name": "react",
+            "image": "./images/frontend-development/react-original-wordmark.svg"
+        },
+        {
+            "name": "svelte",
+            "image": "./images/frontend-development/Svelte_Logo.svg"
+        },
+        {
+            "name": "angularjs",
+            "image": "./images/frontend-development/angularjs-original-wordmark.svg"
+        },
+        {
+            "name": "angular",
+            "image": "./images/frontend-development/angular.svg"
+        },
+        {
+            "name": "backbonejs",
+            "image": "./images/frontend-development/backbonejs-original-wordmark.svg"
+        },
+        {
+            "name": "bootstrap",
+            "image": "./images/frontend-development/bootstrap-plain-wordmark.svg"
+        },
+        {
+            "name": "vuetify",
+            "image": "./images/frontend-development/vuetify.svg"
+        },
+        {
+            "name": "css3",
+            "image": "./images/frontend-development/css3-original-wordmark.svg"
+        },
+        {
+            "name": "html5",
+            "image": "./images/frontend-development/html5-original-wordmark.svg"
+        },
+        {
+            "name": "pug",
+            "image": "./images/frontend-development/pug.svg"
+        },
+        {
+            "name": "gulp",
+            "image": "./images/frontend-development/gulp-plain.svg"
+        },
+        {
+            "name": "sass",
+            "image": "./images/frontend-development/sass-original.svg"
+        },
+        {
+            "name": "redux",
+            "image": "./images/frontend-development/redux-original.svg"
+        },
+        {
+            "name": "webpack",
+            "image": "./images/frontend-development/webpack-original-wordmark.svg"
+        },
+        {
+            "name": "babel",
+            "image": "./images/frontend-development/babeljs-icon.svg"
+        },
+        {
+            "name": "tailwind",
+            "image": "./images/frontend-development/tailwindcss-icon.svg"
+        },
+        {
+            "name": "materialize",
+            "image": "materialize.svg"
+        },
+        {
+            "name": "bulma",
+            "image": "./images/frontend-development/bulma.svg"
+        },
+        {
+            "name": "gtk",
+            "image": "./images/frontend-development/GTK_logo.svg"
+        },
+        {
+            "name": "qt",
+            "image": "./images/frontend-development/Qt_logo_2016.svg"
+        },
+        {
+            "name": "wx_widgets",
+            "image": "./images/frontend-development/WxWidgets.svg"
+        },
+        {
+            "name": "ember",
+            "image": "./images/frontend-development/ember-original-wordmark.svg"
+        }
+    ],
+    "Backend_Development": [
+        {
+            "name": "nodejs",
+            "image": "./images/backend-development/nodejs-original-wordmark.svg"
+        },
+        {
+            "name": "spring",
+            "image": "./images/backend-development/springio-icon.svg"
+        },
+        {
+            "name": "express",
+            "image": "./images/backend-development/express-original-wordmark.svg"
+        },
+        {
+            "name": "graphql",
+            "image": "./images/backend-development/graphql-icon.svg"
+        },
+        {
+            "name": "kafka",
+            "image": "./images/backend-development/apache_kafka-icon.svg"
+        },
+        {
+            "name": "solr",
+            "image": "./images/backend-development/apache_solr-icon.svg"
+        },
+        {
+            "name": "rabbitMQ",
+            "image": "./images/backend-development/rabbitmq-icon.svg"
+        },
+        {
+            "name": "hadoop",
+            "image": "./images/backend-development/apache_hadoop-icon.svg"
+        },
+        {
+            "name": "nginx",
+            "image": "./images/backend-development/nginx-original.svg"
+        },
+        {
+            "name": "openresty",
+            "image": "./images/backend-development/logo.png"
+        },
+        {
+            "name": "nestjs",
+            "image": "./images/backend-development/nestjs-plain.svg"
+        }
+    ],
+    "Database": [
+        {
+            "name": "mongoDB",
+            "image": "./images/datab/mongodb-original-wordmark.svg"
+        },
+        {
+            "name": "mysql",
+            "image": "./images/datab/mysql-original-wordmark.svg"
+        },
+        {
+            "name": "postgreSQL",
+            "image": "./images/datab/postgresql-original-wordmark.svg"
+        },
+        {
+            "name": "redis",
+            "image": "./images/datab/redis-original-wordmark.svg"
+        },
+        {
+            "name": "oracle",
+            "image": "./images/datab/oracle-original-svg"
+        },
+        {
+            "name": "cassandra",
+            "image": "./images/datab/appache_cassandra-icon.svg"
+        },
+        {
+            "name": "couchdb",
+            "image": "./images/datab/couchdb-original.svg"
+        },
+        {
+            "name": "hive",
+            "image": "./images/datab/apache_hive-icon.svg"
+        },
+        {
+            "name": "realm",
+            "image": "./images/datab/realm.svg"
+        },
+        {
+            "name": "mariadb",
+            "image": "./images/datab/mariadb-icon.svg"
+        },
+        {
+            "name": "coockroadchdb",
+            "image": "./images/datab/cockroachdb.svg"
+        },
+        {
+            "name": "elasticsearch",
+            "image": "./images/datab/elastic-icon.svg"
+        },
+        {
+            "name": "sqlite",
+            "image": "./images/datab/sqlite-icon.svg"
+        },
+        {
+            "name": "mssql",
+            "image": "./images/datab/microsoft-sql-server-logo.svg"
+        }
+    ],
+    "Backend_as_a_Service(BaaS)": [
+        {
+            "name": "firebase",
+            "image": "./images/baas/firebase-icon.svg"
+        },
+        {
+            "name": "appwrite",
+            "image": "./images/baas/appwriteio-icon.svg"
+        },
+        {
+            "name": "amplify",
+            "image": "./images/baas/logo-dark.svg"
+        },
+        {
+            "name": "heroku",
+            "image": "./images/datab/heroku-icon.svg"
+        }
+    ],
+    "Framework": [
+        {
+            "name": "django",
+            "image": "./images/frameworks/django.svg"
+        },
+        {
+            "name": "dotnet",
+            "image": "./images/frameworks/dot-net-original-wordmark.svg"
+        },
+        {
+            "name": "electron",
+            "image": "./images/frameworks/electron-original.svg"
+        },
+        {
+            "name": "symfony",
+            "image": "./images/frameworks/symfony_black_03.svg"
+        },
+        {
+            "name": "laravel",
+            "image": "./images/frameworks/laravel-plain-wordmark.svg"
+        },
+        {
+            "name": "codeigniter",
+            "image": "./images/frameworks/codeigniter.svg"
+        },
+        {
+            "name": "rails",
+            "image": "./images/frameworks/rails-original-wordmark.svg"
+        },
+        {
+            "name": "flask",
+            "image": "./images/frameworks/pocoo_flask-icon.svg"
+        },
+        {
+            "name": "quasar",
+            "image": "./images/frameworks/quasar-logo.svg"
+        }
+    ]
+}

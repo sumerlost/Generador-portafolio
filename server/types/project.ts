@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 
-export interface Iproject {
+export interface IProject {
+    _id?: Types.ObjectId | string,
     name: string,
     repository: string,
     description: string,

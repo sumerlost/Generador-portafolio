@@ -1,0 +1,21 @@
+import { NextFunction, Request, Response } from "express";
+import { DBUserSearch } from "../db/handlers/user";
+import IUser, { RequestUser } from "../types/user";
+
+export const checkUserExist = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+
+        const { user }: RequestUser = req.body
+        const usearch: IUser | undefined = await DBUserSearch(user.mail)
+        if (!usearch) {
+            next()
+        }
+        else {
+            const myerror = new Error("usuario ya registrado")
+            next(myerror)
+        }
+    } catch (error) {
+        next(error)
+    }
+
+}

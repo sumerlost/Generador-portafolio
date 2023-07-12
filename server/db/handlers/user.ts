@@ -5,6 +5,7 @@ export const DBCreateUser = async (user: IUser): Promise<IUser | Error> => {
     try {
 
         const newUser = new User<IUser>(user)
+        newUser.portafolio = null
         const response: IUser = await newUser.save()
         return response
 
@@ -24,7 +25,6 @@ export const DBUserSearch = async (mail: string): Promise<IUser | undefined> => 
         else {
             return undefined
         }
-
 
     } catch (error: any) {
         console.error("Error: ", error.message);

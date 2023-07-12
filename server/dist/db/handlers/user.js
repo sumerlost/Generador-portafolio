@@ -5,6 +5,7 @@ const models_1 = require("../models");
 const DBCreateUser = async (user) => {
     try {
         const newUser = new models_1.User(user);
+        newUser.portafolio = null;
         const response = await newUser.save();
         return response;
     }

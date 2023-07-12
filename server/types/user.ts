@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 
 export default interface IUser {
+    _id?: Types.ObjectId | string,
     firstname: string,
     lastname: string,
     password: string,
@@ -11,5 +12,10 @@ export default interface IUser {
     address: string,
     github: string,
     linkedin: string,
-    portafolio?: Types.ObjectId
+    portafolio?: Types.ObjectId | null
+    role?: string
+}
+
+export type RequestUser = {
+    user: IUser
 }
