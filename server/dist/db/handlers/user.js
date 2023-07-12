@@ -6,7 +6,6 @@ const DBCreateUser = async (user) => {
     try {
         const newUser = new models_1.User(user);
         newUser.portafolio = null;
-        console.log(newUser);
         const response = await newUser.save();
         return response;
     }
@@ -23,7 +22,7 @@ const DBUserSearch = async (mail) => {
             return userSearch;
         }
         else {
-            return undefined;
+            return false;
         }
     }
     catch (error) {

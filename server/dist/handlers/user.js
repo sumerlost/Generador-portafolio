@@ -26,11 +26,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterUser = void 0;
 const user_1 = require("../db/handlers/user");
 const bcrypt = __importStar(require("bcrypt"));
+const jwt = __importStar(require("jsonwebtoken"));
 const RegisterUser = async (req, res) => {
     try {
         const { user } = req.body;
         const hashedpass = bcrypt.hashSync(user.password, 10);
-        const response = await (0, user_1.DBCreateUser)({ ...user, password: hashedpass });
+        const usercreated = await (0, user_1.DBCreateUser)({ ...user, password: hashedpass });
+        const newToken = { _id: usercreated?._id, role: usercreated?.role };
+        const response = jwt.sign(newToken, "10");
         res.status(200).send(response);
     }
     catch (error) {

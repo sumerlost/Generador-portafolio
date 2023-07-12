@@ -6,8 +6,8 @@ export const checkUserExist = async (req: Request, res: Response, next: NextFunc
     try {
         console.log("entre")
         const { user }: RequestUser = req.body
-        const usearch: IUser | undefined = await DBUserSearch(user.mail)
-        if (!usearch) {
+        const usearch: IUser | null = await DBUserSearch(user.mail)
+        if (usearch !== null) {
             next()
         }
         else {
