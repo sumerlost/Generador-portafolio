@@ -4,14 +4,16 @@ import IUser, { RequestUser } from "../types/user";
 import *  as bcrypt from "bcrypt"
 import * as jwt from "jsonwebtoken"
 
-type RequestLogin = {
-    email: string,
-    password: string
+type validate = {
+    validate: { user: IUser, password: string } | false
 }
+
 
 export const RegisterUser = async (req: Request, res: Response) => {
     try {
-
+        if (req.body.validate) {
+            return res.status(400).json({ error: "el usuario ya se encuentra registrado" })
+        }
         const { user }: RequestUser = req.body
         const hashedpass: string = bcrypt.hashSync(user.password, 10)
         const usercreated: IUser = await DBCreateUser({ ...user, password: hashedpass })
@@ -25,15 +27,18 @@ export const RegisterUser = async (req: Request, res: Response) => {
 
 }
 
-export const LoginUser = async (req: Request<{}, {}, {}, RequestLogin>, res: Response) => {
+export const LoginUser = async (req: Request, res: Response) => {
 
     try {
 
-        const { query } = req
-        const userfind: IUser | null = await DBUserSearch(query.email)
-        if (userfind) {
-            if (await bcrypt.compare(userfind.password, query.password)) {
-                const newToken: Pick<IUser, "_id" | "role"> = { _id: userfind._id, role: userfind.role }
+        const { validate }: validate = req.body
+
+        if (!validate) {
+            return res.status(400).json({ error: "usuario no registrado" })
+        }
+        else {
+            if (await bcrypt.compare(validate.user.password, validate.password)) {
+                const newToken: Pick<IUser, "_id" | "role"> = { _id: validate.user._id, role: validate.user.role }
                 const response: string = jwt.sign(newToken, "10")
                 res.status(200).send(response)
             }
@@ -41,11 +46,6 @@ export const LoginUser = async (req: Request<{}, {}, {}, RequestLogin>, res: Res
                 res.status(400).json({ error: "contraseña incorrecta" })
             }
         }
-        else {
-            res.status(400).json({ error: "usuario no registrado" })
-
-        }
-
     } catch (error: any) {
         console.error(error.message)
     }
