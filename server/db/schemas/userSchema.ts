@@ -2,7 +2,7 @@ import IUser from "../../types/user";
 import { Schema } from "mongoose";
 
 export const userSchema = new Schema<IUser>({
-    _id: Schema.Types.ObjectId,
+
     mail: {
         type: String,
         require: true,

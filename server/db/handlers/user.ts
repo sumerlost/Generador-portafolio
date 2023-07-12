@@ -6,6 +6,7 @@ export const DBCreateUser = async (user: IUser): Promise<IUser | Error> => {
 
         const newUser = new User<IUser>(user)
         newUser.portafolio = null
+        console.log(newUser)
         const response: IUser = await newUser.save()
         return response
 

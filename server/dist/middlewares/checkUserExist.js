@@ -4,6 +4,7 @@ exports.checkUserExist = void 0;
 const user_1 = require("../db/handlers/user");
 const checkUserExist = async (req, res, next) => {
     try {
+        console.log("entre");
         const { user } = req.body;
         const usearch = await (0, user_1.DBUserSearch)(user.mail);
         if (!usearch) {

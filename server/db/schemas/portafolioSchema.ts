@@ -2,7 +2,7 @@ import { Schema } from "mongoose";
 import { IPortafolio } from "../../types/portafolio";
 
 export const portafolioSchema = new Schema<IPortafolio>({
-    _id: Schema.Types.ObjectId,
+
     cv: {
         type: String,
         require: true,

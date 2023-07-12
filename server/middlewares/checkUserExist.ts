@@ -4,7 +4,7 @@ import IUser, { RequestUser } from "../types/user";
 
 export const checkUserExist = async (req: Request, res: Response, next: NextFunction) => {
     try {
-
+        console.log("entre")
         const { user }: RequestUser = req.body
         const usearch: IUser | undefined = await DBUserSearch(user.mail)
         if (!usearch) {

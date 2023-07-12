@@ -2,7 +2,7 @@ import { Schema } from "mongoose";
 import { IProject } from "../../types/project";
 
 export const projectSchema = new Schema<IProject>({
-    _id: Schema.Types.ObjectId,
+
     name: {
         type: String,
         require: true
