@@ -31,3 +31,4 @@ const DBUserSearch = async (mail) => {
     }
 };
 exports.DBUserSearch = DBUserSearch;
+//# sourceMappingURL=user.js.map

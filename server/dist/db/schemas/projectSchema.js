@@ -25,3 +25,4 @@ exports.projectSchema = new mongoose_1.Schema({
         ref: "User"
     }
 });
+//# sourceMappingURL=projectSchema.js.map

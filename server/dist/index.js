@@ -28,19 +28,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongodb_1 = require("./db/mongodb");
 const express_1 = __importDefault(require("express"));
-const user_1 = __importDefault(require("./routes/user"));
+const auth_1 = __importDefault(require("./routes/auth"));
 const cors_1 = __importDefault(require("cors"));
 const jwt = __importStar(require("jsonwebtoken"));
+const portafolio_1 = __importDefault(require("./routes/portafolio"));
 mongodb_1.mongoose.connection;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-app.get("/", async (req, res) => {
-    console.log("entre");
-    const { authorization } = req.headers;
-    const token = authorization.split(" ");
-    console.log(jwt.decode(token[1]));
-    res.status(200).send("ok");
+app.get("/generatetoken", (req, res) => {
+    const { mail, password } = req.query;
+    const newToken = jwt.sign({ mail, password }, "1");
+    res.status(200).send(newToken);
 });
-app.use(user_1.default);
+app.use(auth_1.default);
+app.use(portafolio_1.default);
 app.listen(3001);
+//# sourceMappingURL=index.js.map

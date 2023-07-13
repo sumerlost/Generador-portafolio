@@ -15,3 +15,4 @@ mongoose_1.default.connection.on("error", (error) => {
     console.log('Error connection: ', error);
 });
 (0, datainit_1.dataInit)();
+//# sourceMappingURL=mongodb.js.map

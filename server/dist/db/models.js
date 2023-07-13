@@ -10,3 +10,4 @@ exports.User = (0, mongoose_1.model)("User", userSchema_1.userSchema);
 exports.Portafolio = (0, mongoose_1.model)("Portafolio", portafolioSchema_1.portafolioSchema);
 exports.Project = (0, mongoose_1.model)("Project", projectSchema_1.projectSchema);
 exports.Technology = (0, mongoose_1.model)("Technology", technologySchema_1.technologySchema);
+//# sourceMappingURL=models.js.map

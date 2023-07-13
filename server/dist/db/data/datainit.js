@@ -24,3 +24,4 @@ const dataInit = async () => {
     }
 };
 exports.dataInit = dataInit;
+//# sourceMappingURL=datainit.js.map

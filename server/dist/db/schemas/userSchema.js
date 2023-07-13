@@ -45,3 +45,4 @@ exports.userSchema = new mongoose_1.Schema({
         default: "user"
     }
 });
+//# sourceMappingURL=userSchema.js.map

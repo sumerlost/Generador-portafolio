@@ -11,3 +11,4 @@ exports.portafolioSchema = new mongoose_1.Schema({
     projects: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "Project" }],
     user: { type: mongoose_1.Schema.Types.ObjectId, ref: "User" }
 });
+//# sourceMappingURL=portafolioSchema.js.map

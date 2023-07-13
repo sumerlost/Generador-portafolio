@@ -3,9 +3,11 @@ import { DBCreateUser, DBUserSearch } from "../db/handlers/user";
 import IUser, { RequestUser } from "../types/user";
 import *  as bcrypt from "bcrypt"
 import * as jwt from "jsonwebtoken"
+namespace personallyRequest {
+    export type validate = {
+        validate: { user: IUser, password: string } | false
+    }
 
-type validate = {
-    validate: { user: IUser, password: string } | false
 }
 
 
@@ -31,13 +33,12 @@ export const LoginUser = async (req: Request, res: Response) => {
 
     try {
 
-        const { validate }: validate = req.body
-
+        const { validate }: personallyRequest.validate = req.body
         if (!validate) {
             return res.status(400).json({ error: "usuario no registrado" })
         }
         else {
-            if (await bcrypt.compare(validate.user.password, validate.password)) {
+            if (await bcrypt.compare(validate.password, validate.user.password)) {
                 const newToken: Pick<IUser, "_id" | "role"> = { _id: validate.user._id, role: validate.user.role }
                 const response: string = jwt.sign(newToken, "10")
                 res.status(200).send(response)

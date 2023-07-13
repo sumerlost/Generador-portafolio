@@ -2,9 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DBCreateProjects = void 0;
 const models_1 = require("../models");
-async function DBCreateProjects(projects) {
+const mongoose_1 = require("mongoose");
+async function DBCreateProjects(projects, iduser) {
     try {
-        const bulkprojects = await models_1.Project.insertMany(projects);
+        const formatProjects = projects.map(e => {
+            const formatid = new mongoose_1.Types.ObjectId(iduser);
+            return { ...e, user: formatid };
+        });
+        const bulkprojects = await models_1.Project.insertMany(formatProjects);
         return bulkprojects;
     }
     catch (error) {
@@ -13,3 +18,4 @@ async function DBCreateProjects(projects) {
     }
 }
 exports.DBCreateProjects = DBCreateProjects;
+//# sourceMappingURL=project.js.map

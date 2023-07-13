@@ -18,3 +18,4 @@ exports.technologySchema = new mongoose_1.Schema({
         require: true,
     }
 });
+//# sourceMappingURL=technologySchema.js.map

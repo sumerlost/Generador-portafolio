@@ -5,6 +5,6 @@ export interface IProject {
     name: string,
     repository: string,
     description: string,
-    user?: Types.ObjectId,
+    user?: Types.ObjectId | string,
     deploy: string
 }

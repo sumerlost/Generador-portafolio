@@ -4,7 +4,7 @@ import { Portafolio, Project, Technology, User } from "../models";
 import { DBCreateProjects } from "./project";
 import IUser from "../../types/user";
 
-export const DBPortafolioCreate = async (portafolio: IPortafolio, iduser: string): Promise<IPortafolio | undefined> => {
+export const DBPortafolioCreate = async (portafolio: IPortafolio, iduser: string): Promise<IPortafolio> => {
 
     try {
 
@@ -14,7 +14,10 @@ export const DBPortafolioCreate = async (portafolio: IPortafolio, iduser: string
                 portafolio: newP._id
             }
         })
-        newP.user = userP?._id
+        if (userP === null) {
+            throw Error("El usuario no existe")
+        }
+        newP.user = userP._id
         const response: IPortafolio = await newP.save()
         return response
 

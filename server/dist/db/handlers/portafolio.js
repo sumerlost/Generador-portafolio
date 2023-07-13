@@ -10,7 +10,10 @@ const DBPortafolioCreate = async (portafolio, iduser) => {
                 portafolio: newP._id
             }
         });
-        newP.user = userP?._id;
+        if (userP === null) {
+            throw Error("El usuario no existe");
+        }
+        newP.user = userP._id;
         const response = await newP.save();
         return response;
     }
@@ -20,3 +23,4 @@ const DBPortafolioCreate = async (portafolio, iduser) => {
     }
 };
 exports.DBPortafolioCreate = DBPortafolioCreate;
+//# sourceMappingURL=portafolio.js.map
