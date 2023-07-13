@@ -27,6 +27,7 @@ exports.LoginUser = exports.RegisterUser = void 0;
 const user_1 = require("../db/handlers/user");
 const bcrypt = __importStar(require("bcrypt"));
 const jwt = __importStar(require("jsonwebtoken"));
+const { JWT_KEY } = process.env;
 const RegisterUser = async (req, res) => {
     try {
         if (req.body.validate) {
@@ -36,7 +37,7 @@ const RegisterUser = async (req, res) => {
         const hashedpass = bcrypt.hashSync(user.password, 10);
         const usercreated = await (0, user_1.DBCreateUser)({ ...user, password: hashedpass });
         const newToken = { _id: usercreated?._id, role: usercreated?.role };
-        const response = jwt.sign(newToken, "10");
+        const response = jwt.sign(newToken, JWT_KEY);
         res.status(200).send(response);
     }
     catch (error) {

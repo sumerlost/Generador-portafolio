@@ -3,6 +3,7 @@ import { DBCreateUser, DBUserSearch } from "../db/handlers/user";
 import IUser, { RequestUser } from "../types/user";
 import *  as bcrypt from "bcrypt"
 import * as jwt from "jsonwebtoken"
+const { JWT_KEY }: NodeJS.ProcessEnv = process.env
 namespace personallyRequest {
     export type validate = {
         validate: { user: IUser, password: string } | false
@@ -20,7 +21,7 @@ export const RegisterUser = async (req: Request, res: Response) => {
         const hashedpass: string = bcrypt.hashSync(user.password, 10)
         const usercreated: IUser = await DBCreateUser({ ...user, password: hashedpass })
         const newToken: Pick<IUser, "_id" | "role"> = { _id: usercreated?._id, role: usercreated?.role }
-        const response: string = jwt.sign(newToken, "10")
+        const response: string = jwt.sign(newToken, JWT_KEY as jwt.Secret)
         res.status(200).send(response)
 
     } catch (error: any) {

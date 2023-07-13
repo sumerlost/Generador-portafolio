@@ -1,9 +1,13 @@
 import { mongoose } from "./db/mongodb"
-import express from "express"
+import express, { ErrorRequestHandler, NextFunction, Request, Response } from "express"
 import authRouter from "./routes/auth"
 import cors from "cors"
 import * as jwt from "jsonwebtoken"
 import portafolioRouter from "./routes/portafolio"
+import * as dotenv from "dotenv"
+import { error } from "console"
+
+dotenv.config()
 mongoose.connection
 
 const app: express.Express = express()
@@ -24,10 +28,19 @@ app.get("/generatetoken", (req, res) => {
     const newToken = jwt.sign({ email, password }, "1")
     res.status(200).send(newToken)
 })
+
+app.get("/prueba", (req, res) => {
+    const { authorization }: any = req.headers
+    const token = authorization?.substring(7)
+    const response = jwt.verify(token, "1")
+    console.log(response)
+    res.status(200).send(response)
+})
+
 app.use(authRouter)
 app.use(portafolioRouter)
+app.use((error: ErrorRequestHandler, req: Request, res: Response, next: NextFunction): void => {
+    res.status(401).json(error)
 
-app.listen(3001)
-app.on("error", () => {
-    app.listen(3002)
 })
+app.listen(3001)

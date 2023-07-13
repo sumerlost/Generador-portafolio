@@ -32,6 +32,8 @@ const auth_1 = __importDefault(require("./routes/auth"));
 const cors_1 = __importDefault(require("cors"));
 const jwt = __importStar(require("jsonwebtoken"));
 const portafolio_1 = __importDefault(require("./routes/portafolio"));
+const dotenv = __importStar(require("dotenv"));
+dotenv.config();
 mongodb_1.mongoose.connection;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
@@ -41,10 +43,17 @@ app.get("/generatetoken", (req, res) => {
     const newToken = jwt.sign({ email, password }, "1");
     res.status(200).send(newToken);
 });
+app.get("/prueba", (req, res) => {
+    const { authorization } = req.headers;
+    const token = authorization?.substring(7);
+    const response = jwt.verify(token, "1");
+    console.log(response);
+    res.status(200).send(response);
+});
 app.use(auth_1.default);
 app.use(portafolio_1.default);
-app.listen(3001);
-app.on("error", () => {
-    app.listen(3002);
+app.use((error, req, res, next) => {
+    res.status(401).json(error);
 });
+app.listen(3001);
 //# sourceMappingURL=index.js.map
