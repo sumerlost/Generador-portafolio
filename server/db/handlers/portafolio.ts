@@ -9,6 +9,8 @@ export const DBPortafolioCreate = async (portafolio: IPortafolio, iduser: string
     try {
 
         const newP = new Portafolio<IPortafolio>(portafolio)
+        const techsUser: Types.ObjectId[] = await Technology.find({ name: { $in: portafolio.technologies } }).select("_id")
+        newP.technologies = techsUser
         const userP: IUser | null = await User.findByIdAndUpdate<IUser>(iduser, {
             $set: {
                 portafolio: newP._id
