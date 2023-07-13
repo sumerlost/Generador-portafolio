@@ -37,11 +37,14 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.get("/generatetoken", (req, res) => {
-    const { mail, password } = req.query;
-    const newToken = jwt.sign({ mail, password }, "1");
+    const { email, password } = req.query;
+    const newToken = jwt.sign({ email, password }, "1");
     res.status(200).send(newToken);
 });
 app.use(auth_1.default);
 app.use(portafolio_1.default);
 app.listen(3001);
+app.on("error", () => {
+    app.listen(3002);
+});
 //# sourceMappingURL=index.js.map

@@ -51,7 +51,7 @@ const LoginUser = async (req, res) => {
             return res.status(400).json({ error: "usuario no registrado" });
         }
         else {
-            if (await bcrypt.compare(validate.user.password, validate.password)) {
+            if (await bcrypt.compare(validate.password, validate.user.password)) {
                 const newToken = { _id: validate.user._id, role: validate.user.role };
                 const response = jwt.sign(newToken, "10");
                 res.status(200).send(response);

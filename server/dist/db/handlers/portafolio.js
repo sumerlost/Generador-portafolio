@@ -5,6 +5,8 @@ const models_1 = require("../models");
 const DBPortafolioCreate = async (portafolio, iduser) => {
     try {
         const newP = new models_1.Portafolio(portafolio);
+        const techsUser = await models_1.Technology.find({ name: { $in: portafolio.technologies } }).select("_id");
+        newP.technologies = techsUser;
         const userP = await models_1.User.findByIdAndUpdate(iduser, {
             $set: {
                 portafolio: newP._id

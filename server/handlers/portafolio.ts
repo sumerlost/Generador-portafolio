@@ -4,7 +4,7 @@ import { IPortafolio } from "../types/portafolio";
 import { DBPortafolioCreate } from "../db/handlers/portafolio";
 import { IProject } from "../types/project";
 import { DBCreateProjects } from "../db/handlers/project";
-//import { assingProjectsToPortafolio } from "../db/helpers/assingProjectsToPortafolio";
+import { assingProjectsToPortafolio } from "../db/helpers/assingProjectsToPortafolio";
 import { RPortafolio, RProjects, RidUser } from "../types/requestP";
 
 
@@ -25,7 +25,8 @@ export const createProject = async (req: Request, res: Response) => {
         const { projects }: RProjects = req.body
         const { idUser }: RidUser = req.body
         const projectscreated: IProject[] = await DBCreateProjects(projects, idUser)
-        //assingProjectsToPortafolio(projectscreated)
+        const response: IPortafolio = await assingProjectsToPortafolio(projectscreated)
+        res.status(200).send(response)
     } catch (error: any) {
         return res.status(400).json({ error: error.message })
     }

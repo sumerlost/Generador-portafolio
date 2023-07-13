@@ -7,5 +7,6 @@ const express_1 = __importDefault(require("express"));
 const portafolio_1 = require("../handlers/portafolio");
 const portafolioRouter = express_1.default.Router();
 portafolioRouter.post("/createpf", portafolio_1.createPortafolio);
+portafolioRouter.post("/createproject", portafolio_1.createProject);
 exports.default = portafolioRouter;
 //# sourceMappingURL=portafolio.js.map
