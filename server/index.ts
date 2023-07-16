@@ -17,14 +17,18 @@ const app: express.Express = express()
 app.use(cors())
 app.use(express.json())
 
-app.use(upload.fields([{ name: "curriculum", maxCount: 1 }, { name: "images", maxCount: 2 }]))
+app.use(upload.fields([{ name: "cv", maxCount: 1 }, { name: "images", maxCount: 2 }]))
 app.get("/generatetoken", (req, res) => {
     const { mail, password }: any = req.query
     const newToken = jwt.sign({ mail, password }, "1")
     res.status(200).send(newToken)
 })
-
-
+app.get("/decodetoken", (req, res) => {
+    const { authorization } = req.headers
+    const token = authorization ? authorization?.substring(7) : ""
+    const response = jwt.decode(token)
+    res.status(200).send(response)
+})
 app.post("/prueba", async (req: Request, res: Response) => {
 
     const response: string = ""

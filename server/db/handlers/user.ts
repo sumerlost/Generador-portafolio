@@ -15,10 +15,11 @@ export const DBCreateUser = async (user: IUser): Promise<IUser> => {
     }
 }
 
-export const DBUserSearch = async (mail: string): Promise<IUser | null> => {
+export const DBUserSearch = async (mail: string | null, iduser?: string): Promise<IUser | null> => {
     try {
 
-        const userSearch = await User.findOne<IUser>({ mail: mail }).lean()
+
+        const userSearch = mail ? await User.findOne<IUser>({ mail: mail }).lean() : await User.findById<IUser>(iduser).lean()
         if (userSearch) {
             return userSearch
         }

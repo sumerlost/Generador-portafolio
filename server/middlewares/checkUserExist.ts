@@ -14,7 +14,7 @@ export const checkUserExist = async (req: Request, res: Response, next: NextFunc
         }
         const info: jwt.JwtPayload | string | null = jwt.decode(token)
         if (info !== null && typeof info !== "string") {
-            const usearch: IUser | null = await DBUserSearch(info.email)
+            const usearch: IUser | null = await DBUserSearch(info.mail)
             if (usearch !== null) {
                 req.body.validate = {
                     user: usearch, password: info.password
