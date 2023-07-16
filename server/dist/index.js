@@ -33,27 +33,28 @@ const cors_1 = __importDefault(require("cors"));
 const jwt = __importStar(require("jsonwebtoken"));
 const portafolio_1 = __importDefault(require("./routes/portafolio"));
 const dotenv = __importStar(require("dotenv"));
+const multer_1 = __importDefault(require("multer"));
+const upload = (0, multer_1.default)();
 dotenv.config();
 mongodb_1.mongoose.connection;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+app.use(upload.fields([{ name: "curriculum", maxCount: 1 }, { name: "images", maxCount: 2 }]));
 app.get("/generatetoken", (req, res) => {
-    const { email, password } = req.query;
-    const newToken = jwt.sign({ email, password }, "1");
+    const { mail, password } = req.query;
+    const newToken = jwt.sign({ mail, password }, "1");
     res.status(200).send(newToken);
 });
-app.get("/prueba", (req, res) => {
-    const { authorization } = req.headers;
-    const token = authorization?.substring(7);
-    const response = jwt.verify(token, "1");
-    console.log(response);
-    res.status(200).send(response);
+app.post("/prueba", async (req, res) => {
+    const response = "";
+    res.status(200).json(response);
 });
 app.use(auth_1.default);
 app.use(portafolio_1.default);
 app.use((error, req, res, next) => {
-    res.status(401).json(error);
+    console.log(error);
+    res.status(401).json(error.message);
 });
 app.listen(3001);
 //# sourceMappingURL=index.js.map

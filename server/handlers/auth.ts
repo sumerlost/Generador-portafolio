@@ -3,7 +3,6 @@ import { DBCreateUser, DBUserSearch } from "../db/handlers/user";
 import IUser, { RequestUser } from "../types/user";
 import *  as bcrypt from "bcrypt"
 import * as jwt from "jsonwebtoken"
-const { JWT_KEY }: NodeJS.ProcessEnv = process.env
 namespace personallyRequest {
     export type validate = {
         validate: { user: IUser, password: string } | false
@@ -13,6 +12,7 @@ namespace personallyRequest {
 
 
 export const RegisterUser = async (req: Request, res: Response) => {
+    const { JWT_KEY }: NodeJS.ProcessEnv = process.env
     try {
         if (req.body.validate) {
             return res.status(400).json({ error: "el usuario ya se encuentra registrado" })

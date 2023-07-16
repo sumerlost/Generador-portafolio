@@ -10,3 +10,8 @@ export interface RProjects {
 export interface RidUser {
     idUser: string
 }
+
+export interface RFiles {
+    curriculum?: Express.Multer.File,
+    images?: Express.Multer.File[]
+}

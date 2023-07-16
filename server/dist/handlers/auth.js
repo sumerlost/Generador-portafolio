@@ -27,8 +27,8 @@ exports.LoginUser = exports.RegisterUser = void 0;
 const user_1 = require("../db/handlers/user");
 const bcrypt = __importStar(require("bcrypt"));
 const jwt = __importStar(require("jsonwebtoken"));
-const { JWT_KEY } = process.env;
 const RegisterUser = async (req, res) => {
+    const { JWT_KEY } = process.env;
     try {
         if (req.body.validate) {
             return res.status(400).json({ error: "el usuario ya se encuentra registrado" });
