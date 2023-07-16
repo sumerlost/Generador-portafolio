@@ -15,9 +15,9 @@ const DBCreateUser = async (user) => {
     }
 };
 exports.DBCreateUser = DBCreateUser;
-const DBUserSearch = async (mail) => {
+const DBUserSearch = async (mail, iduser) => {
     try {
-        const userSearch = await models_1.User.findOne({ mail: mail }).lean();
+        const userSearch = mail ? await models_1.User.findOne({ mail: mail }).lean() : await models_1.User.findById(iduser).lean();
         if (userSearch) {
             return userSearch;
         }

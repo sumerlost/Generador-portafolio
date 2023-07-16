@@ -34,17 +34,25 @@ const jwt = __importStar(require("jsonwebtoken"));
 const portafolio_1 = __importDefault(require("./routes/portafolio"));
 const dotenv = __importStar(require("dotenv"));
 const multer_1 = __importDefault(require("multer"));
+const morgan_1 = __importDefault(require("morgan"));
 const upload = (0, multer_1.default)();
 dotenv.config();
 mongodb_1.mongoose.connection;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-app.use(upload.fields([{ name: "curriculum", maxCount: 1 }, { name: "images", maxCount: 2 }]));
+app.use((0, morgan_1.default)("tiny"));
+app.use(upload.fields([{ name: "cv", maxCount: 1 }, { name: "images", maxCount: 2 }]));
 app.get("/generatetoken", (req, res) => {
     const { mail, password } = req.query;
     const newToken = jwt.sign({ mail, password }, "1");
     res.status(200).send(newToken);
+});
+app.get("/decodetoken", (req, res) => {
+    const { authorization } = req.headers;
+    const token = authorization ? authorization?.substring(7) : "";
+    const response = jwt.decode(token);
+    res.status(200).send(response);
 });
 app.post("/prueba", async (req, res) => {
     const response = "";

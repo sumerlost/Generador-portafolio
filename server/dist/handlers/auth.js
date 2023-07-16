@@ -55,7 +55,7 @@ const LoginUser = async (req, res) => {
             if (await bcrypt.compare(validate.password, validate.user.password)) {
                 const newToken = { _id: validate.user._id, role: validate.user.role };
                 const response = jwt.sign(newToken, "10");
-                res.status(200).send(response);
+                res.status(200).json(response);
             }
             else {
                 res.status(400).json({ error: "contraseña incorrecta" });

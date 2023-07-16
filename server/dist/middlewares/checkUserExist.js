@@ -30,12 +30,12 @@ const checkUserExist = async (req, res, next) => {
     try {
         let token = "";
         const { authorization } = req.headers;
-        if (authorization) {
-            token = authorization.substring(7);
+        if (authorization && typeof authorization === "string") {
+            token = authorization;
         }
         const info = jwt.decode(token);
         if (info !== null && typeof info !== "string") {
-            const usearch = await (0, user_1.DBUserSearch)(info.email);
+            const usearch = await (0, user_1.DBUserSearch)(info.mail);
             if (usearch !== null) {
                 req.body.validate = {
                     user: usearch, password: info.password
