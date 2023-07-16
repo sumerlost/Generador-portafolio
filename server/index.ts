@@ -6,7 +6,7 @@ import * as jwt from "jsonwebtoken"
 import portafolioRouter from "./routes/portafolio"
 import * as dotenv from "dotenv"
 import multer from "multer"
-
+import morgan from "morgan"
 const upload: multer.Multer = multer()
 
 dotenv.config()
@@ -16,7 +16,7 @@ mongoose.connection
 const app: express.Express = express()
 app.use(cors())
 app.use(express.json())
-
+app.use(morgan("tiny"))
 app.use(upload.fields([{ name: "cv", maxCount: 1 }, { name: "images", maxCount: 2 }]))
 app.get("/generatetoken", (req, res) => {
     const { mail, password }: any = req.query

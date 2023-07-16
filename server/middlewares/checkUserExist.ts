@@ -9,9 +9,10 @@ export const checkUserExist = async (req: Request, res: Response, next: NextFunc
 
         let token: string = ""
         const { authorization }: IncomingHttpHeaders = req.headers
-        if (authorization) {
-            token = authorization.substring(7)
+        if (authorization && typeof authorization === "string") {
+            token = authorization
         }
+
         const info: jwt.JwtPayload | string | null = jwt.decode(token)
         if (info !== null && typeof info !== "string") {
             const usearch: IUser | null = await DBUserSearch(info.mail)

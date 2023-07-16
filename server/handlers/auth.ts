@@ -42,7 +42,7 @@ export const LoginUser = async (req: Request, res: Response) => {
             if (await bcrypt.compare(validate.password, validate.user.password)) {
                 const newToken: Pick<IUser, "_id" | "role"> = { _id: validate.user._id, role: validate.user.role }
                 const response: string = jwt.sign(newToken, "10")
-                res.status(200).send(response)
+                res.status(200).json(response)
             }
             else {
                 res.status(400).json({ error: "contraseña incorrecta" })
