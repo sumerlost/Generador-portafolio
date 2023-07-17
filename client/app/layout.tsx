@@ -1,7 +1,9 @@
+import ButtonLogin from '@/components/ButtonLogin/buttonLogin'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-
+import Link from 'next/link'
+Link
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -14,9 +16,23 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+
+
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header className="h-24 p-8 flex justify-between items-center w-100 bg-teal-200">
+          <div className="logo font-bold">LOGO</div>
+          <div className="menu flex-0">
+            <button className="flex items-center focus:outline-none focus:bg-teal-300 p-2">
+              <ButtonLogin />
+            </button>
+          </div>
+        </header>
+        {children}
+      </body>
     </html>
   )
 }
