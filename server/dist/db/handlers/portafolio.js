@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DBPortafolioCreate = void 0;
+exports.DBPortafolioGet = exports.DBPortafolioCreate = void 0;
 const models_1 = require("../models");
 const DBPortafolioCreate = async (portafolio, iduser) => {
     try {
@@ -25,4 +25,29 @@ const DBPortafolioCreate = async (portafolio, iduser) => {
     }
 };
 exports.DBPortafolioCreate = DBPortafolioCreate;
+const DBPortafolioGet = async (filters = []) => {
+    let response;
+    try {
+        const allPortafolios = await models_1.Portafolio.find({}).populate([{ path: "user" }, { path: "technologies" }, { path: "projects" }]);
+        if (filters.length === 0) {
+            if (allPortafolios.length !== 0) {
+                response = allPortafolios;
+            }
+            else {
+                throw Error("No hay usuarios registrados");
+            }
+        }
+        else {
+            const filteredbytech = allPortafolios.filter(portafolio => portafolio.technologies.every((e) => filters.includes(e.name)));
+            response = filteredbytech;
+        }
+        console.log(response);
+        return response;
+    }
+    catch (error) {
+        console.log(error.message);
+        throw new Error(error.message);
+    }
+};
+exports.DBPortafolioGet = DBPortafolioGet;
 //# sourceMappingURL=portafolio.js.map

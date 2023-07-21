@@ -31,7 +31,7 @@ const checkAuth = async (req, res, next) => {
         let token = "";
         const { authorization } = req.headers;
         if (authorization) {
-            token = authorization.substring(7);
+            token = authorization;
         }
         const info = jwt.verify(token, JWT_KEY);
         if (info !== null && typeof info !== "string") {
