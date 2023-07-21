@@ -17,9 +17,9 @@ export const uploadFiles = (files: Express.Multer.File[], mail: string): string[
     const s3Client = new S3Client({ region: AWS_REGION, credentials: { accessKeyId: AWS_ACCESS_KEY_ID, secretAccessKey: AWS_SECRET_ACCESS_KEY } });
     for (let element of files) {
         const params: settingsAWS = {
-            Bucket: "generadorportafolio", // The name of the bucket. For example, 'sample-bucket-101'.
-            Key: `${mail}/${element.fieldname}/${element.originalname}`, // The name of the object. For example, 'sample_upload.txt'.
-            Body: element.buffer, // The content of the object. For example, 'Hello world!".
+            Bucket: "generadorportafolio",
+            Key: `${mail}/${element.fieldname}/${element.originalname}`,
+            Body: element.buffer,
         }
         const filepromise: Promise<PutObjectAclCommandOutput> = s3Client.send(new PutObjectCommand(params))
         filepromises.push(filepromise)

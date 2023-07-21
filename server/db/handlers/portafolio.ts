@@ -1,14 +1,17 @@
 import { Types } from "mongoose";
-import { IPortafolio } from "../../types/portafolio";
+import { IPortafolio, IPortafolioPopulated, IPortafolioUnpopulated } from "../../types/portafolio";
 import { Portafolio, Project, Technology, User } from "../models";
 import { DBCreateProjects } from "./project";
 import IUser from "../../types/user";
+import { IProject } from "../../types/project";
+import { ITechnology } from "../../types/technology";
+import path from "path";
 
-export const DBPortafolioCreate = async (portafolio: IPortafolio, iduser: string): Promise<IPortafolio> => {
+export const DBPortafolioCreate = async (portafolio: IPortafolioUnpopulated, iduser: string): Promise<IPortafolio> => {
 
     try {
 
-        const newP = new Portafolio<IPortafolio>(portafolio)
+        const newP = new Portafolio<IPortafolioUnpopulated>(portafolio)
         const techsUser: Types.ObjectId[] = await Technology.find({ name: { $in: portafolio.technologies } }).select("_id")
         newP.technologies = techsUser
         const userP: IUser | null = await User.findByIdAndUpdate<IUser>(iduser, {
@@ -28,4 +31,31 @@ export const DBPortafolioCreate = async (portafolio: IPortafolio, iduser: string
         throw new Error("no se pudo crear el portafolio")
     }
 
+}
+
+export const DBPortafolioGet = async (filters: string[] = []): Promise<IPortafolioPopulated[]> => {
+    let response: IPortafolioPopulated[]
+    try {
+        const allPortafolios:
+            (Omit<IPortafolio, "technologies" | "user" | "projects"> & { user: IUser, projects: IProject[], technologies: ITechnology[] })[]
+            = await Portafolio.find<IPortafolio>({}).populate<{ user: IUser, projects: IProject[], technologies: ITechnology[] }>([{ path: "user" }, { path: "technologies" }, { path: "projects" }])
+        if (filters.length === 0) {
+            if (allPortafolios.length !== 0) {
+                response = allPortafolios
+            }
+            else {
+                throw Error("No hay usuarios registrados")
+            }
+        }
+        else {
+            const filteredbytech = allPortafolios.filter(portafolio =>
+                portafolio.technologies.every((e) => filters.includes(e.name)))
+            response = filteredbytech
+        }
+        console.log(response)
+        return response
+    } catch (error: any) {
+        console.log(error.message)
+        throw new Error(error.message)
+    }
 }

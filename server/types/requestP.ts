@@ -1,7 +1,7 @@
-import { IPortafolio } from "./portafolio"
+import { IPortafolioUnpopulated } from "./portafolio"
 import { IProject } from "./project"
 export interface RPortafolio {
-    portafolio: IPortafolio
+    portafolio: IPortafolioUnpopulated
     idUser: string
 }
 export interface RProjects {

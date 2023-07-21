@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
-import { IPortafolio } from "../../types/portafolio";
+import { IPortafolioUnpopulated } from "../../types/portafolio";
 
-export const portafolioSchema = new Schema<IPortafolio>({
+export const portafolioSchema = new Schema<IPortafolioUnpopulated>({
 
     cv: {
         type: String,
