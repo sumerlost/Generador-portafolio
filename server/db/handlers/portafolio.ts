@@ -34,7 +34,15 @@ export const DBPortafolioCreate = async (portafolio: IPortafolioUnpopulated, idu
 }
 
 export const DBPortafolioGet = async (filters: string[] = []): Promise<IPortafolioPopulated[]> => {
-    let response: IPortafolioPopulated[]
+    let response: IPortafolioPopulated[] = []
+    let arrayfilters: string[] = []
+    if (typeof filters === "string") {
+        arrayfilters.push(filters)
+    }
+    else {
+        arrayfilters = filters
+    }
+    console.log(arrayfilters)
     try {
         const allPortafolios:
             (Omit<IPortafolio, "technologies" | "user" | "projects"> & { user: IUser, projects: IProject[], technologies: ITechnology[] })[]
@@ -48,11 +56,14 @@ export const DBPortafolioGet = async (filters: string[] = []): Promise<IPortafol
             }
         }
         else {
-            const filteredbytech = allPortafolios.filter(portafolio =>
-                portafolio.technologies.every((e) => filters.includes(e.name)))
-            response = filteredbytech
+            for (let portafolio of allPortafolios) {
+                if (arrayfilters.every(e =>
+                    portafolio.technologies.some(i => i.name === e)
+                )) {
+                    response.push(portafolio)
+                }
+            }
         }
-        console.log(response)
         return response
     } catch (error: any) {
         console.log(error.message)
